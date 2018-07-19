@@ -1,10 +1,13 @@
+-- create database
 CREATE DATABASE "book_collection";
 
+-- create "genres" table
 CREATE TABLE "genres" (
 	"id" SERIAL PRIMARY KEY,
 	"genre_name" VARCHAR(150)
 );
 
+-- create "books" table referencing "genre" table
 CREATE TABLE "books" (
 	"id" SERIAL PRIMARY KEY,
 	"title" VARCHAR(250),

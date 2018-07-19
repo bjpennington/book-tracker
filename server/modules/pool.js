@@ -1,7 +1,9 @@
+// require in pg to set up pool
 const Pool = require('pg').Pool;
 const url = require('url');
 let config;
 
+// configure pool to allow for database hosting
 if (process.env.DATABASE_URL) {
     let params = url.parse(process.env.DATABASE_URL);
     let auth = params.auth.split(':');
@@ -31,6 +33,7 @@ if (process.env.DATABASE_URL) {
 
 const pool = new Pool(config);
 
+// check for pool connections
 pool.on('connect', (client) => {
     console.log('posgresql connected!');
 });
@@ -40,4 +43,5 @@ pool.on('error', (err, client) => {
     process.exit(-1);
 });
 
+// export pool
 module.exports = pool;
