@@ -17,9 +17,9 @@ router.get('/', (req, res) => {
 
 // GENRES POST REQUEST
 router.post('/', (req, res) => {
-    let newGenre = req.body;   
+    let genreToAdd = req.body;   
     let queryText = `INSERT INTO "genres" ("genre_name") VALUES ($1);`
-    pool.query(queryText, [newGenre.genre_name])
+    pool.query(queryText, [genreToAdd.genre_name])
         .then(results => {
             res.sendStatus(201);
         })
@@ -29,9 +29,20 @@ router.post('/', (req, res) => {
         });
 });
 
-
-
 // GENRES DELETE REQUEST
+router.delete('/:id', (req, res) => {
+    let genreToDelete = req.params.id;
+    let queryText = `DELETE FROM "genres" WHERE "id" = $1;`;
+    pool.query(queryText, [genreToDelete])
+        .then(results => {
+            console.log('/genres DELETE results:', results);
+            res.sendStatus(200);
+        })
+        .catch(errorFromPG => {
+            console.log('/genres DELETE error:', errorFromPG);
+            res.sendStatus(500);
+        });
+});
 
 // GENRES PUT REQUEST
 
