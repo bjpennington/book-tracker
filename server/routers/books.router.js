@@ -34,6 +34,18 @@ router.post('/', (req, res) => {
 });
 
 // BOOKS DELETE REQUEST
+router.delete('/:id', (req, res) => {
+    let bookToDelete = req.params.id; 
+    let queryText = `DELETE FROM "books" WHERE "id" = $1;`;
+    pool.query(queryText, [bookToDelete])
+        .then(results => {
+            res.sendStatus(200);
+        })
+        .catch(errorFromPG => {
+            console.log('/genres DELETE error:', errorFromPG);
+            res.sendStatus(500);
+        });
+});
 
 // BOOKS PUT REQUEST
 
