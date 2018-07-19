@@ -16,6 +16,20 @@ router.get('/', (req, res) => {
 });
 
 // GENRES POST REQUEST
+router.post('/', (req, res) => {
+    let newGenre = req.body;   
+    let queryText = `INSERT INTO "genres" ("genre_name") VALUES ($1);`
+    pool.query(queryText, [newGenre.genre_name])
+        .then(results => {
+            res.sendStatus(201);
+        })
+        .catch(errorFromPG => {
+            console.log('/genres POST error', errorFromPG);
+            res.sendStatus(500);
+        });
+});
+
+
 
 // GENRES DELETE REQUEST
 

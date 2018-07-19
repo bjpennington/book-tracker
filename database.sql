@@ -4,7 +4,7 @@ CREATE DATABASE "book_collection";
 -- create "genres" table
 CREATE TABLE "genres" (
 	"id" SERIAL PRIMARY KEY,
-	"genre_name" VARCHAR(150)
+	"genre_name" VARCHAR(150) UNIQUE NOT NULL
 );
 
 -- create "books" table referencing "genre" table
