@@ -35,7 +35,6 @@ router.delete('/:id', (req, res) => {
     let queryText = `DELETE FROM "genres" WHERE "id" = $1;`;
     pool.query(queryText, [genreToDelete])
         .then(results => {
-            console.log('/genres DELETE results:', results);
             res.sendStatus(200);
         })
         .catch(errorFromPG => {
