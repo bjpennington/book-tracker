@@ -13,11 +13,11 @@ app.config(['$routeProvider', function($routeProvider) {
         })
         .when('/books', {
             templateUrl : 'views/books.html',
-            controller : 'BookController as vm'
+            controller : 'BooksController as vm'
         })
         .when('/genres', {
             templateUrl : 'views/genres.html',
-            controller : 'GenreController as vm'
+            controller : 'GenresController as vm'
         })
         .otherwise({
             template : '<h2>404</h2>'
