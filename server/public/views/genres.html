@@ -1,0 +1,22 @@
+<form>
+    <label for="vm.newGenre.genre_name">Add a Genre</label>
+    <input type="text" ng-model="vm.newGenre.genre_name">
+    <input type="submit" ng-click="vm.addGenre(vm.newGenre)">
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Genre</th>
+            <th>Total Books</th>
+            <th>Delete?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="genre in vm.genres.list">
+            <td>{{genre.genre_name}}</td>
+            <td>{{genre.count}}</td>
+            <td><button ng-click="vm.deleteGenre(genre)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
