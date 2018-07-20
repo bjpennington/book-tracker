@@ -1,12 +1,9 @@
-console.log('js');
-
+// set up angular app
 const app = angular.module('BookCollectionApp', ['ngRoute', function() {
-    console.log('BookCollectionApp loaded');
 }]);
 
-app.config(['$routeProvider', function($routeProvider) {
-    console.log('Route config loaded');
-    
+// configure client side routing
+app.config(['$routeProvider', function($routeProvider) {   
     $routeProvider
         .when('/', {
             redirectTo : '/books'

@@ -19,9 +19,7 @@ router.get('/', (req, res) => {
 
 // BOOKS POST REQUEST
 router.post('/', (req, res) => {
-    let bookToAdd = req.body;   
-    console.log(bookToAdd);
-    
+    let bookToAdd = req.body;      
     let queryText = `INSERT INTO "books"
                     ("title", "author", "image_url", "publication_date", "number_of_pages", "genre_id")
                     VALUES ($1, $2, $3, $4, $5, $6);`;

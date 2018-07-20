@@ -1,11 +1,13 @@
+// set up controller for book view
 app.controller('GenresController', ['BookCollectionService', function(BookCollectionService) {
-    console.log('GenresController loaded');
     const self = this;
-    self.message = 'Genres Loaded';
 
+    // get genres data from service
     self.genres = BookCollectionService.genres;
 
+    // get addGenre function from service
     self.addGenre = BookCollectionService.addGenre;
 
+    // get deleteGenre function from service
     self.deleteGenre = BookCollectionService.deleteGenre;
 }]);

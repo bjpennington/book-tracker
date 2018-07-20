@@ -1,19 +1,22 @@
+// set up angular service
 app.service('BookCollectionService', ['$http', function ($http) {
-    console.log('Book Collection Service loaded');
+
     const self = this;
 
+    // object to hold genres data
     self.genres = {
         list: []
     }
 
+    // object to hold books data
     self.books = {
         list: []
     }
 
+    // add new genre
     self.addGenre = function (newGenre) {
         $http.post('/genres', newGenre)
             .then(function (response) {
-                console.log('response from /genres POST', response);
                 self.getGenre();
             })
             .catch(function (error) {
@@ -21,10 +24,10 @@ app.service('BookCollectionService', ['$http', function ($http) {
             });
     }
 
+    // get genres from server
     self.getGenre = function () {
         $http.get('/genres')
             .then(function (response) {
-                console.log('response from /genres GET', response);
                 self.genres.list = response.data;
             })
             .catch(function (error) {
@@ -32,13 +35,11 @@ app.service('BookCollectionService', ['$http', function ($http) {
             });
     }
 
-    self.deleteGenre = function (genreToDelete) {
-        console.log(genreToDelete);
-        
+    // delete genres with no movies
+    self.deleteGenre = function (genreToDelete) {       
         if (genreToDelete.count == 0) {
             $http.delete(`/genres/${genreToDelete.id}`)
                 .then(function (response) {
-                    console.log('response from /genres DELETE', response);
                     self.getGenre();
                 })
                 .catch(function (error) {
@@ -50,10 +51,10 @@ app.service('BookCollectionService', ['$http', function ($http) {
         }
     }
 
+    // get books from server
     self.getBook = function() {
         $http.get('/books')
               .then(function(response) {
-                  console.log('response from /books GET', response);
                   self.books.list = response.data;
               })
               .catch(function(error) {
@@ -61,12 +62,10 @@ app.service('BookCollectionService', ['$http', function ($http) {
               });
     }
 
+    // add new book
     self.addBook = function(newBook) {
-        console.log('book to be added:', newBook);
-        
         $http.post('/books', newBook)
              .then(function(response) {
-                 console.log('response from /books POST', response);
                  self.getBook();
              })
              .catch(function(error) {
@@ -74,10 +73,10 @@ app.service('BookCollectionService', ['$http', function ($http) {
              });
     }
 
+    // delete book
     self.deleteBook = function(id) {
         $http.delete(`/books/${id}`)
              .then(function(response) {
-                 console.log('response from /books DELETE', response);
                  self.getBook();
              })
              .catch(function(error) {
