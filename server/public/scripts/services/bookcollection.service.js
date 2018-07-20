@@ -6,6 +6,17 @@ app.service('BookCollectionService', ['$http', function($http) {
         list : []
     }
 
+    self.addGenre = function(newGenre) {
+        $http.post('/genres', newGenre)
+             .then(function(response) {
+                 console.log('response from /genres POST', response);
+                 self.getGenres();
+             })
+             .catch(function(error) {
+                 console.log('Genres POST error:', error);
+             });
+    }
+
     self.getGenres = function() {
         $http.get('/genres')
              .then(function(response) {

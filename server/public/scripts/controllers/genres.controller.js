@@ -5,5 +5,5 @@ app.controller('GenresController', ['BookCollectionService', function(BookCollec
 
     self.genres = BookCollectionService.genres;
 
-    
+    self.addGenre = BookCollectionService.addGenre;
 }]);
