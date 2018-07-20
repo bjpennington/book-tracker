@@ -6,6 +6,10 @@ app.service('BookCollectionService', ['$http', function ($http) {
         list: []
     }
 
+    self.books = {
+        list: []
+    }
+
     self.addGenre = function (newGenre) {
         $http.post('/genres', newGenre)
             .then(function (response) {
@@ -46,5 +50,17 @@ app.service('BookCollectionService', ['$http', function ($http) {
         }
     }
 
+    self.getBook = function() {
+        $http.get('/books')
+              .then(function(response) {
+                  console.log('response from /books GET', response);
+                  self.books.list = response.data;
+              })
+              .catch(function(error) {
+                  console.log('Books GET error:', error);
+              });
+    }
+
+    self.getBook();
     self.getGenre();
 }]);

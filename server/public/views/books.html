@@ -1,2 +1,25 @@
-<p>books</p>
-{{vm.message}}
+<form>
+    <label for="vm.newBook.title">Title</label>
+    <input type="text" ng-model="vm.newBook.title">
+    <label for="vm.newBook.author">Author</label>
+    <input type="text" ng-model="vm.newBook.author">
+    <label for="vm.newBook.image_url">Cover Photo URL</label>
+    <input type="url" ng-model="vm.newBook.image_url">
+    <label for="vm.newBook.publication_date">Publication Year</label>
+    <input type="number" ng-model="vm.newBook.publication_date">
+    <label for="vm.newBook.number_of_pages">Number of Pages</label>
+    <input type="number" ng-model="vm.newBook.number_of_pages">
+    <label for="vm.newBook.genre">Genre</label>
+    <input type="text" ng-model="vm.newBook.genre">
+    <input type="submit" ng-click="vm.addBook(vm.newBook)">
+</form>
+
+<div ng-repeat="book in vm.books.list">
+    <img ng-src="book.image_url" alt="">
+    <h3>{{book.title}}</h3>
+    <h4>{{book.author}}</h4>
+    <p>{{book.genre}}</p>
+    <p>Published: {{book.publication_date}}</p>
+    <p>{{book.number_of_pages}} pages</p>
+    <button>Delete</button>
+</div>
