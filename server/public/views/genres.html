@@ -16,7 +16,7 @@
         <tr ng-repeat="genre in vm.genres.list">
             <td>{{genre.genre_name}}</td>
             <td>{{genre.count}}</td>
-            <td><button>Delete</button></td>
+            <td><button ng-click="vm.deleteGenre(genre.id)">Delete</button></td>
         </tr>
     </tbody>
 </table>
