@@ -10,7 +10,10 @@
     <label for="vm.newBook.number_of_pages">Number of Pages</label>
     <input type="number" ng-model="vm.newBook.number_of_pages">
     <label for="vm.newBook.genre">Genre</label>
-    <input type="text" ng-model="vm.newBook.genre">
+    <!-- <input type="text" ng-model="vm.newBook.genre_id"> -->
+    <select ng-model="vm.newBook.genre_id">
+        <option ng-repeat="genre in vm.genres.list" value="{{genre.id}}">{{genre.genre_name}}</option>
+    </select>
     <input type="submit" ng-click="vm.addBook(vm.newBook)">
 </form>
 
@@ -21,5 +24,5 @@
     <p>{{book.genre}}</p>
     <p>Published: {{book.publication_date}}</p>
     <p>{{book.number_of_pages}} pages</p>
-    <button>Delete</button>
+    <button ng-click="vm.deleteBook(book.id)">Delete</button>
 </div>

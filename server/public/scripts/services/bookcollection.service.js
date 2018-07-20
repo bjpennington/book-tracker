@@ -61,6 +61,30 @@ app.service('BookCollectionService', ['$http', function ($http) {
               });
     }
 
+    self.addBook = function(newBook) {
+        console.log('book to be added:', newBook);
+        
+        $http.post('/books', newBook)
+             .then(function(response) {
+                 console.log('response from /books POST', response);
+                 self.getBook();
+             })
+             .catch(function(error) {
+                 console.log('Books POST error:', error);
+             });
+    }
+
+    self.deleteBook = function(id) {
+        $http.delete(`/books/${id}`)
+             .then(function(response) {
+                 console.log('response from /books DELETE', response);
+                 self.getBook();
+             })
+             .catch(function(error) {
+                 console.log('Books DELETE error:', error);  
+             });
+    }
+
     self.getBook();
     self.getGenre();
 }]);
