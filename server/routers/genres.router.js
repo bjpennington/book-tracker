@@ -4,7 +4,9 @@ const pool = require('../modules/pool');
 
 // GENRES GET REQUEST
 router.get('/', (req, res) => {
-    let queryText = `SELECT * FROM "genres";`;
+    let queryText = `SELECT "genres"."id", "genres"."genre_name", count("books"."genre_id") FROM "genres"
+                     LEFT OUTER JOIN "books" ON "genres"."id" = "books"."genre_id"
+                     GROUP BY "genres"."id", "genres"."genre_name";`;
     pool.query(queryText)
         .then(results => {  
             res.send(results.rows);
