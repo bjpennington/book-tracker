@@ -24,9 +24,8 @@ INSERT INTO "genres"
 ("genre_name")
 VALUES ('fiction'), ('mystery'), ('history'), ('biography');
 
-INSERT INTO "books" ("title", "author", "genre_id")
+INSERT INTO "books" ("title", "author", "genre_id", "image_url")
 VALUES
-('Jane Eyre', 'Charlotte Bronte', 1),
-('Harry Potter and the Order of the Phoenix', 'J.K. Rowling', 1),
-('The Boys in the Boat', 'Daniel James Brown', 3),
-('The Secret Place', 'Tana French', 2);
+('Harry Potter and the Order of the Phoenix', 'J.K. Rowling', 1, 'https://images-na.ssl-images-amazon.com/images/I/51lFAzVQUxL._SX342_BO1,204,203,200_.jpg'),
+('The Boys in the Boat', 'Daniel James Brown', 3, 'http://www.danieljamesbrown.com/images/TheBoysintheBoat.png'),
+('The Secret Place', 'Tana French', 2, 'https://images.gr-assets.com/books/1396671263l/20821043.jpg');
