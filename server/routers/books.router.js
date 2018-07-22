@@ -48,6 +48,35 @@ router.delete('/:id', (req, res) => {
 });
 
 // BOOKS PUT REQUEST
+router.put('/:id', (req, res) => {
+    let bookToUpdate = req.params.id;
+    let queryText = `UPDATE "books" SET "favorite" = NOT "favorite"
+                     WHERE "books"."id" = $1;`;
+    pool.query(queryText, [bookToUpdate])
+        .then(results => {
+            console.log('/books favorite results:', results);
+            res.sendStatus(200);
+        })
+        .catch(errorFromPG => {
+            console.log('/books favorite PUT error:', errorFromPG);
+            res.sendStatus(500);
+        });
+});
+
+router.get('/favorites', (req, res) => {
+    let queryText = `SELECT "books"."id", "books"."title", "books"."author", "books"."image_url", "books"."publication_date", "books"."number_of_pages", "books"."favorite", "genres"."genre_name"
+                     FROM "books"
+                      JOIN "genres" ON "books"."genre_id" = "genres"."id"
+                      WHERE "books"."favorite" = 'true';`;
+    pool.query(queryText)
+        .then(results => {  
+            res.send(results.rows);
+        })
+        .catch(errorFromPG => {
+            console.log('/books GET error:', errorFromPG);  
+            res.sendStatus(500); 
+        });
+});
 
 // export books router
 module.exports = router;

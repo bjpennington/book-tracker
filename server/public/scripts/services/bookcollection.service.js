@@ -13,6 +13,11 @@ app.service('BookCollectionService', ['$http', function ($http) {
         list: []
     }
 
+    // object to hold favorite books data
+    self.favorites = {
+        list: []
+    }
+
     // add new genre
     self.addGenre = function (newGenre) {
         $http.post('/genres', newGenre)
@@ -35,7 +40,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
             });
     }
 
-    // delete genres with no movies
+    // delete genres with no books
     self.deleteGenre = function (genreToDelete) {
         if (genreToDelete.count == 0) {
             $http.delete(`/genres/${genreToDelete.id}`)
@@ -83,6 +88,31 @@ app.service('BookCollectionService', ['$http', function ($http) {
             });
     }
 
+    // make a book a favorite
+    self.favoriteBook = function (id) {
+        $http.put(`/books/${id}`)
+            .then(function(response) {
+                self.getBook();
+                self.getFavorite();
+            })
+            .catch(function (error) {
+                console.log('Books favorite PUT error:', error);
+                
+            });
+    }
+
+    // get all favorites from server
+    self.getFavorite = function () {
+        $http.get('/books/favorites')
+            .then(function (response) {
+                self.favorites.list = response.data;
+            })
+            .catch(function (error) {
+                console.log('Favorites GET error:', error);
+            });
+    }
+
     self.getBook();
     self.getGenre();
+    self.getFavorite();
 }]);

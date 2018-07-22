@@ -16,6 +16,10 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl : 'views/genres.html',
             controller : 'GenresController as vm'
         })
+        .when('/favorites', {
+            templateUrl : 'views/favorites.html',
+            controller : 'FavoritesController as vm'
+        })
         .otherwise({
             template : '<h2>404</h2>'
         });
