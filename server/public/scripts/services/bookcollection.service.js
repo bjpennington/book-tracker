@@ -13,6 +13,10 @@ app.service('BookCollectionService', ['$http', function ($http) {
         list: []
     }
 
+    self.favorites = {
+        list: []
+    }
+
     // add new genre
     self.addGenre = function (newGenre) {
         $http.post('/genres', newGenre)
@@ -89,6 +93,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
             .then(function(response) {
                 console.log('response from favoriteBook:', response);
                 self.getBook();
+                self.getFavorite();
             })
             .catch(function (error) {
                 console.log('Books favorite PUT error:', error);
@@ -96,6 +101,17 @@ app.service('BookCollectionService', ['$http', function ($http) {
             });
     }
 
+    self.getFavorite = function () {
+        $http.get('/books/favorites')
+            .then(function (response) {
+                self.favorites.list = response.data;
+            })
+            .catch(function (error) {
+                console.log('Favorites GET error:', error);
+            });
+    }
+
     self.getBook();
     self.getGenre();
+    self.getFavorite();
 }]);

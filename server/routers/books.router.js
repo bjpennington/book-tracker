@@ -63,5 +63,20 @@ router.put('/:id', (req, res) => {
         });
 });
 
+router.get('/favorites', (req, res) => {
+    let queryText = `SELECT "books"."id", "books"."title", "books"."author", "books"."image_url", "books"."publication_date", "books"."number_of_pages", "books"."favorite", "genres"."genre_name"
+    FROM "books"
+    JOIN "genres" ON "books"."genre_id" = "genres"."id"
+    WHERE "books"."favorite" = 'true';`;
+    pool.query(queryText)
+    .then(results => {  
+        res.send(results.rows);
+    })
+    .catch(errorFromPG => {
+        console.log('/books GET error:', errorFromPG);  
+        res.sendStatus(500); 
+    });
+})
+
 // export books router
 module.exports = router;
