@@ -83,6 +83,19 @@ app.service('BookCollectionService', ['$http', function ($http) {
             });
     }
 
+    // make a book a favorite
+    self.favoriteBook = function (id) {
+        $http.put(`/books/${id}`)
+            .then(function(response) {
+                console.log('response from favoriteBook:', response);
+                
+            })
+            .catch(function (error) {
+                console.log('Books favorite PUT error:', error);
+                
+            });
+    }
+
     self.getBook();
     self.getGenre();
 }]);

@@ -48,6 +48,20 @@ router.delete('/:id', (req, res) => {
 });
 
 // BOOKS PUT REQUEST
+router.put('/:id', (req, res) => {
+    let bookToUpdate = req.params.id;
+    let queryText = `UPDATE "books" SET "favorite" = NOT "favorite"
+                     WHERE "books"."id" = $1;`;
+    pool.query(queryText, [bookToUpdate])
+        .then(results => {
+            console.log('/books favorite results:', results);
+            res.sendStatus(200);
+        })
+        .catch(errorFromPG => {
+            console.log('/books favorite PUT error:', errorFromPG);
+            res.sendStatus(500);
+        });
+});
 
 // export books router
 module.exports = router;
