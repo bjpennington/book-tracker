@@ -88,7 +88,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
         $http.put(`/books/${id}`)
             .then(function(response) {
                 console.log('response from favoriteBook:', response);
-                
+                self.getBook();
             })
             .catch(function (error) {
                 console.log('Books favorite PUT error:', error);
