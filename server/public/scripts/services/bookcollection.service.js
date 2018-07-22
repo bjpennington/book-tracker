@@ -13,6 +13,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
         list: []
     }
 
+    // object to hold favorite books data
     self.favorites = {
         list: []
     }
@@ -39,7 +40,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
             });
     }
 
-    // delete genres with no movies
+    // delete genres with no books
     self.deleteGenre = function (genreToDelete) {
         if (genreToDelete.count == 0) {
             $http.delete(`/genres/${genreToDelete.id}`)
@@ -91,7 +92,6 @@ app.service('BookCollectionService', ['$http', function ($http) {
     self.favoriteBook = function (id) {
         $http.put(`/books/${id}`)
             .then(function(response) {
-                console.log('response from favoriteBook:', response);
                 self.getBook();
                 self.getFavorite();
             })
@@ -101,6 +101,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
             });
     }
 
+    // get all favorites from server
     self.getFavorite = function () {
         $http.get('/books/favorites')
             .then(function (response) {
