@@ -36,7 +36,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
     }
 
     // delete genres with no movies
-    self.deleteGenre = function (genreToDelete) {       
+    self.deleteGenre = function (genreToDelete) {
         if (genreToDelete.count == 0) {
             $http.delete(`/genres/${genreToDelete.id}`)
                 .then(function (response) {
@@ -45,43 +45,42 @@ app.service('BookCollectionService', ['$http', function ($http) {
                 .catch(function (error) {
                     console.log('Genres DELETE error:', error);
                 });
-        }
-        else {
+        } else {
             alert('Genres with books cannot be deleted!');
         }
     }
 
     // get books from server
-    self.getBook = function() {
+    self.getBook = function () {
         $http.get('/books')
-              .then(function(response) {
-                  self.books.list = response.data;
-              })
-              .catch(function(error) {
-                  console.log('Books GET error:', error);
-              });
+            .then(function (response) {
+                self.books.list = response.data;
+            })
+            .catch(function (error) {
+                console.log('Books GET error:', error);
+            });
     }
 
     // add new book
-    self.addBook = function(newBook) {
+    self.addBook = function (newBook) {
         $http.post('/books', newBook)
-             .then(function(response) {
-                 self.getBook();
-             })
-             .catch(function(error) {
-                 console.log('Books POST error:', error);
-             });
+            .then(function (response) {
+                self.getBook();
+            })
+            .catch(function (error) {
+                console.log('Books POST error:', error);
+            });
     }
 
     // delete book
-    self.deleteBook = function(id) {
+    self.deleteBook = function (id) {
         $http.delete(`/books/${id}`)
-             .then(function(response) {
-                 self.getBook();
-             })
-             .catch(function(error) {
-                 console.log('Books DELETE error:', error);  
-             });
+            .then(function (response) {
+                self.getBook();
+            })
+            .catch(function (error) {
+                console.log('Books DELETE error:', error);
+            });
     }
 
     self.getBook();
