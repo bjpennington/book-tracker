@@ -28,6 +28,7 @@
     <h4>{{book.author}}</h4>
     <p>{{book.genre_name}}</p>
     <p>Published: {{book.publication_date}}</p>
-    <p>{{book.number_of_pages}} pages</p>
+    <p ng-if="book.number_of_pages == 1">{{book.number_of_pages}} page</p>
+    <p ng-if="book.number_of_pages != 1">{{book.number_of_pages}} pages</p>
     <button ng-click="vm.deleteBook(book.id)">Delete</button>
 </div>
