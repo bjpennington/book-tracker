@@ -1,6 +1,6 @@
 <p ng-if="vm.favorites.list.length == 0">You have no favorites yet! Head over to the books tab to add some.</p>
-<div layout="row">
-    <div class="box" ng-repeat="favorite in vm.favorites.list">
+<div layout="row" layout-margin layout-padding layout-wrap>
+    <div flex="30" class="box" ng-repeat="favorite in vm.favorites.list">
         <img ng-src="{{favorite.image_url}}" alt="">
         <h3>{{favorite.title}}</h3>
         <h4>{{favorite.author}}</h4>
