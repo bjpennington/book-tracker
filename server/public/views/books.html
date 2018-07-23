@@ -30,7 +30,7 @@
     <p>Published: {{book.publication_date}}</p>
     <p ng-if="book.number_of_pages == 1">{{book.number_of_pages}} page</p>
     <p ng-if="book.number_of_pages != 1">{{book.number_of_pages}} pages</p>
-    <md-button class="md-button md-primary md-raised" ng-if="book.favorite" ng-click="vm.favoriteBook(book.id)">Unfavorite</md-button>
-    <md-button class="md-button md-primary md-raised" ng-if="!book.favorite" ng-click="vm.favoriteBook(book.id)">Favorite</md-button>
-    <md-button class="md-button md-primary md-raised" ng-click="vm.deleteBook(book.id)">Delete</md-button>
+    <md-button class="md-button md-primary md-raised" ng-if="book.favorite" ng-click="vm.favoriteBook(book.id)"><i class="material-icons">favorite</i></md-button>
+    <md-button class="md-button md-primary md-raised" ng-if="!book.favorite" ng-click="vm.favoriteBook(book.id)"><i class="material-icons">favorite_border</i></md-button>
+    <md-button class="md-button md-primary md-raised" ng-click="vm.deleteBook(book.id)"><i class="material-icons">delete</i></md-button>
 </div>

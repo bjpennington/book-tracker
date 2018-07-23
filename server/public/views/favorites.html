@@ -6,7 +6,7 @@
     <p>Published: {{favorite.publication_date}}</p>
     <p ng-if="favorite.number_of_pages == 1">{{favorite.number_of_pages}} page</p>
     <p ng-if="favorite.number_of_pages != 1">{{favorite.number_of_pages}} pages</p>
-    <button class="md-button md-primary md-raised" ng-if="favorite.favorite" ng-click="vm.favoriteBook(favorite.id)">Unfavorite</button>
-    <button class="md-button md-primary md-raised" ng-if="!favorite.favorite" ng-click="vm.favoriteBook(favorite.id)">Favorite</button>
-    <button class="md-button md-primary md-raised" ng-click="vm.deleteBook(favorite.id)">Delete</button>
+    <md-button class="md-button md-primary md-raised" ng-if="favorite.favorite" ng-click="vm.favoriteBook(favorite.id)"><i class="material-icons">favorite</i></md-button>
+    <md-button class="md-button md-primary md-raised" ng-if="!favorite.favorite" ng-click="vm.favoriteBook(favorite.id)"><i class="material-icons">favorite_border</i></md-button>
+    <md-button class="md-button md-primary md-raised" ng-click="vm.deleteBook(favorite.id)"><i class="material-icons">delete</i></md-button>
 </div>

@@ -1,5 +1,5 @@
 // set up angular app
-const app = angular.module('BookCollectionApp', ['ngRoute', function() {
+const app = angular.module('BookCollectionApp', ['ngRoute', 'ngMaterial', function() {
 }]);
 
 // configure client side routing
