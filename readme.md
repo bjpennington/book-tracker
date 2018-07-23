@@ -1,23 +1,24 @@
 # Book Collection App
-=====================
+
 
 The purpose of this app is to track and store a record of books you have read.
 
 * Use the main books page to view all of your books, add new books to your collection, delete books from your collection, and mark and unmark favorites.
 * Use the genres page to add and manage genres.
-* Use the favorites page to view all of your favorites. You can also unmark favorites or delete books from your collection here.j
+* Use the favorites page to view all of your favorites. You can also unmark favorites or delete books from your collection here.
 
 ## Get Set Up
-==============
+
 
 Use the following commands to set up your database for the app:
 
--- create database
+> create database
 ```
 CREATE DATABASE "book_collection";
 ```
 
--- create "genres" table
+
+> create "genres" table
 ```
 CREATE TABLE "genres" (
 	"id" SERIAL PRIMARY KEY,
@@ -25,7 +26,8 @@ CREATE TABLE "genres" (
 );
 ```
 
--- create "books" table referencing "genre" table
+
+> create "books" table referencing "genre" table
 ```CREATE TABLE "books" (
 	"id" SERIAL PRIMARY KEY,
 	"title" VARCHAR(250),
@@ -38,12 +40,15 @@ CREATE TABLE "genres" (
 );
 ```
 
-Need some dummy data to get started?
-Add this to your database:
+
+> Need some dummy data to get started?
+
+> Add this to your database:
 ```INSERT INTO "genres"
 ("genre_name")
 VALUES ('fiction'), ('mystery'), ('history'), ('biography');
 ```
+
 
 ```
 INSERT INTO "books" ("title", "author", "genre_id", "image_url")
