@@ -1,36 +1,64 @@
 <form>
-    <label for="vm.newBook.title">Title</label>
-    <input type="text" ng-model="vm.newBook.title">
+    <md-input-container>
+        <label for="vm.newBook.title">Title</label>
+        <input type="text" ng-model="vm.newBook.title" />
+    </md-input-container>
+    <br />
 
-    <label for="vm.newBook.author">Author</label>
-    <input type="text" ng-model="vm.newBook.author">
+    <md-input-container>
+        <label for="vm.newBook.author">Author</label>
+        <input type="text" ng-model="vm.newBook.author" />
+    </md-input-container>
+    <br />
 
-    <label for="vm.newBook.image_url">Cover Photo URL</label>
-    <input type="url" ng-model="vm.newBook.image_url">
+    <md-input-container>
+        <label for="vm.newBook.image_url">Cover Photo URL</label>
+        <input type="url" ng-model="vm.newBook.image_url" />
+    </md-input-container>
+    <br />
 
-    <label for="vm.newBook.publication_date">Publication Year</label>
-    <input type="number" ng-model="vm.newBook.publication_date">
+    <md-input-container>
+        <label for="vm.newBook.publication_date">Publication Year</label>
+        <input type="number" ng-model="vm.newBook.publication_date" />
+    </md-input-container>
+    <br />
 
-    <label for="vm.newBook.number_of_pages">Number of Pages</label>
-    <input type="number" ng-model="vm.newBook.number_of_pages">
+    <md-input-container>
+        <label for="vm.newBook.number_of_pages">Number of Pages</label>
+        <input type="number" ng-model="vm.newBook.number_of_pages" />
+    </md-input-container>
+    <br />
 
-    <label for="vm.newBook.genre">Genre</label>
-    <select ng-model="vm.newBook.genre_id">
-        <option ng-repeat="genre in vm.genres.list" value="{{genre.id}}">{{genre.genre_name}}</option>
-    </select>
-    
-    <input class="md-button md-primary md-raised" type="submit" ng-click="vm.addBook(vm.newBook)">
+    <md-input-container>
+        <label for="vm.newBook.genre">Genre</label>
+        <md-select ng-model="vm.newBook.genre_id">
+            <md-option ng-repeat="genre in vm.genres.list" value="{{genre.id}}">{{genre.genre_name}}</md-option>
+        </md-select>
+    </md-input-container>
+    <br />
+
+    <md-input-container>
+        <input class="md-button md-primary md-raised" type="submit" ng-click="vm.addBook(vm.newBook)" />
+    </md-input-container>
 </form>
 
-<div ng-repeat="book in vm.books.list">
-    <img ng-src="{{book.image_url}}" alt="">
-    <h3>{{book.title}}</h3>
-    <h4>{{book.author}}</h4>
-    <p>{{book.genre_name}}</p>
-    <p>Published: {{book.publication_date}}</p>
-    <p ng-if="book.number_of_pages == 1">{{book.number_of_pages}} page</p>
-    <p ng-if="book.number_of_pages != 1">{{book.number_of_pages}} pages</p>
-    <md-button class="md-button md-primary md-raised" ng-if="book.favorite" ng-click="vm.favoriteBook(book.id)">Unfavorite</md-button>
-    <md-button class="md-button md-primary md-raised" ng-if="!book.favorite" ng-click="vm.favoriteBook(book.id)">Favorite</md-button>
-    <md-button class="md-button md-primary md-raised" ng-click="vm.deleteBook(book.id)">Delete</md-button>
+<div layout="row" layout-margin layout-padding layout-wrap>
+    <div flex="30" class="box" ng-repeat="book in vm.books.list">
+        <img ng-src="{{book.image_url}}" alt="">
+        <h3>{{book.title}}</h3>
+        <h4>{{book.author}}</h4>
+        <p>{{book.genre_name}}</p>
+        <p>Published: {{book.publication_date}}</p>
+        <p ng-if="book.number_of_pages == 1">{{book.number_of_pages}} page</p>
+        <p ng-if="book.number_of_pages != 1">{{book.number_of_pages}} pages</p>
+        <md-button class="md-button md-primary md-raised" ng-if="book.favorite" ng-click="vm.favoriteBook(book.id)">
+            <i class="material-icons">favorite</i>
+        </md-button>
+        <md-button class="md-button md-primary md-raised" ng-if="!book.favorite" ng-click="vm.favoriteBook(book.id)">
+            <i class="material-icons">favorite_border</i>
+        </md-button>
+        <md-button class="md-button md-primary md-raised" ng-click="vm.deleteBook(book.id)">
+            <i class="material-icons">delete</i>
+        </md-button>
+    </div>
 </div>

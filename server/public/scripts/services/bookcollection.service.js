@@ -1,5 +1,5 @@
 // set up angular service
-app.service('BookCollectionService', ['$http', function ($http) {
+app.service('BookCollectionService', ['$http', '$mdToast', '$mdDialog', function ($http, $mdToast, $mdDialog) {
 
     const self = this;
 
@@ -23,6 +23,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
         $http.post('/genres', newGenre)
             .then(function (response) {
                 self.getGenre();
+                self.showToast('Genre Added!');
             })
             .catch(function (error) {
                 console.log('Genres POST error:', error);
@@ -46,6 +47,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
             $http.delete(`/genres/${genreToDelete.id}`)
                 .then(function (response) {
                     self.getGenre();
+                    self.showToast('Genre Deleted!');
                 })
                 .catch(function (error) {
                     console.log('Genres DELETE error:', error);
@@ -71,6 +73,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
         $http.post('/books', newBook)
             .then(function (response) {
                 self.getBook();
+                self.showToast('Book Added!');
             })
             .catch(function (error) {
                 console.log('Books POST error:', error);
@@ -83,6 +86,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
             .then(function (response) {
                 self.getBook();
                 self.getFavorite();
+                self.showToast('Book Deleted!');
             })
             .catch(function (error) {
                 console.log('Books DELETE error:', error);
@@ -92,13 +96,13 @@ app.service('BookCollectionService', ['$http', function ($http) {
     // make a book a favorite
     self.favoriteBook = function (id) {
         $http.put(`/books/${id}`)
-            .then(function(response) {
+            .then(function (response) {
                 self.getBook();
                 self.getFavorite();
             })
             .catch(function (error) {
                 console.log('Books favorite PUT error:', error);
-                
+
             });
     }
 
@@ -111,6 +115,14 @@ app.service('BookCollectionService', ['$http', function ($http) {
             .catch(function (error) {
                 console.log('Favorites GET error:', error);
             });
+    }
+
+    // toast alert function to use with other functions
+    self.showToast = function (toastText) {
+        $mdToast.show(
+            $mdToast.simple()
+            .textContent(toastText)
+        );
     }
 
     self.getBook();

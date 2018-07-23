@@ -1,4 +1,4 @@
-app.controller('FavoritesController', ['BookCollectionService', function(BookCollectionService) {
+app.controller('FavoritesController', ['BookCollectionService', function (BookCollectionService) {
     const self = this;
 
     // get favorites data from service

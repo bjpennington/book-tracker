@@ -1,5 +1,5 @@
 // set up controller for books view
-app.controller('BooksController', ['BookCollectionService', function(BookCollectionService) {
+app.controller('BooksController', ['BookCollectionService', function (BookCollectionService) {
     const self = this;
 
     // get books data from service
