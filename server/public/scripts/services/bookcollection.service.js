@@ -96,13 +96,13 @@ app.service('BookCollectionService', ['$http', '$mdToast', '$mdDialog', function
     // make a book a favorite
     self.favoriteBook = function (id) {
         $http.put(`/books/${id}`)
-            .then(function(response) {
+            .then(function (response) {
                 self.getBook();
                 self.getFavorite();
             })
             .catch(function (error) {
                 console.log('Books favorite PUT error:', error);
-                
+
             });
     }
 
@@ -117,7 +117,8 @@ app.service('BookCollectionService', ['$http', '$mdToast', '$mdDialog', function
             });
     }
 
-    self.showToast = function(toastText) {
+    // toast alert function to use with other functions
+    self.showToast = function (toastText) {
         $mdToast.show(
             $mdToast.simple()
             .textContent(toastText)

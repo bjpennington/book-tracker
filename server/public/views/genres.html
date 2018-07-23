@@ -1,7 +1,7 @@
 <form>
     <label for="vm.newGenre.genre_name">Add a Genre</label>
     <input type="text" ng-model="vm.newGenre.genre_name">
-    
+
     <input class="md-button md-primary md-raised" type="submit" ng-click="vm.addGenre(vm.newGenre)">
 </form>
 
@@ -17,7 +17,9 @@
         <tr ng-repeat="genre in vm.genres.list">
             <td>{{genre.genre_name}}</td>
             <td>{{genre.count}}</td>
-            <td><md-button class="md-button md-primary md-raised" ng-click="vm.deleteGenre(genre)">Delete</md-button></td>
+            <td>
+                <md-button class="md-button md-primary md-raised" ng-click="vm.deleteGenre(genre)">Delete</md-button>
+            </td>
         </tr>
     </tbody>
 </table>
