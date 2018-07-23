@@ -82,6 +82,7 @@ app.service('BookCollectionService', ['$http', function ($http) {
         $http.delete(`/books/${id}`)
             .then(function (response) {
                 self.getBook();
+                self.getFavorite();
             })
             .catch(function (error) {
                 console.log('Books DELETE error:', error);

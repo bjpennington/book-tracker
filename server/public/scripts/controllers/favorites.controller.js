@@ -6,4 +6,7 @@ app.controller('FavoritesController', ['BookCollectionService', function(BookCol
 
     // get favoriteBook function from service
     self.favoriteBook = BookCollectionService.favoriteBook;
+
+    // get deleteBook function from service
+    self.deleteBook = BookCollectionService.deleteBook;
 }]);

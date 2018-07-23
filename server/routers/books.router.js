@@ -54,7 +54,6 @@ router.put('/:id', (req, res) => {
                      WHERE "books"."id" = $1;`;
     pool.query(queryText, [bookToUpdate])
         .then(results => {
-            console.log('/books favorite results:', results);
             res.sendStatus(200);
         })
         .catch(errorFromPG => {
